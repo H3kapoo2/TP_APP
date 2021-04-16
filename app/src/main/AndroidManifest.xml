@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BadgeKeeper">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui_drivers.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
