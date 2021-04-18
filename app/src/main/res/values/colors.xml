@@ -10,4 +10,7 @@
     <color name="input_bg">#394867</color>
     <color name="app_bg">#14274E</color>
     <color name="text_hint_color">#9CA3B3</color>
+    <color name="incorrect_input">#FB5353</color>
+    <color name="app_light_gray">#9BA4B4</color>
+    <color name="app_dark_gray">#394867</color>
 </resources>

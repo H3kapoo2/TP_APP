@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    tools:context=".ui_drivers.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_bg">
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/rajdhani_regular"
+            android:text="Nokia Smart"
+            android:textColor="#fff"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@+id/app_auth_stage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/app_auth_stage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/rajdhani_regular"
+            android:text="Authentification"
+            android:textColor="#fff"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toTopOf="@+id/app_error_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/app_error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/rajdhani_regular"
+            android:text="Incorrect passowrd or email"
+            android:textColor="@color/incorrect_input"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/email_cardview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/email_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/input_bg"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/pass_cardview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/auth_email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#00000000"
+                android:ems="10"
+                android:fontFamily="@font/rajdhani_regular"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:maxLength="100"
+                android:textAlignment="center"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pass_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="28dp"
+            app:cardBackgroundColor="@color/input_bg"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/app_auth_login_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/auth_passowrd_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#00000000"
+                android:ems="10"
+                android:fontFamily="@font/rajdhani_regular"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="100"
+                android:textAlignment="center"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/app_auth_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="88dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/rajdhani_bold"
+            android:text="@string/login_btn_string"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/app_create_acc_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/app_create_acc_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/rajdhani_regular"
+            android:text="@string/create_acc_btn_string"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/app_forgot_pass_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/app_forgot_pass_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="88dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/rajdhani_regular"
+            android:text="@string/forgot_pass_btn_string"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_fingerprint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
