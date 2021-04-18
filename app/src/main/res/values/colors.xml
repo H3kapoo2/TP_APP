@@ -15,4 +15,5 @@
     <color name="app_dark_gray">#394867</color>
     <color name="badge_color">#97A0B1</color>
     <color name="blue_text_color">#394867</color>
+    <color name="text_gray">#79849A</color>
 </resources>
