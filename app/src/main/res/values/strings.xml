@@ -6,5 +6,5 @@
     <string name="goback_btn_string"><u>Go Back</u></string>
     <string name="send_recovery_btn_string"><u>Send Recovery Email</u></string>
     <string name="create_acc_btn_string"><u>Create an account</u></string>
-    <string name="forgot_pass_btn_string"><u>Forgot your passowrd?</u></string>
+    <string name="forgot_pass_btn_string"><u>Forgot your password?</u></string>
 </resources>
