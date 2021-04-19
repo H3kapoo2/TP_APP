@@ -32,26 +32,24 @@
             android:id="@+id/app_auth_stage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="68dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/rajdhani_regular"
             android:text="Scan The Badge"
             android:textColor="#fff"
             android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/external_approach_badge_cv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/external_approach_badge_cv"
             android:layout_width="220dp"
             android:layout_height="220dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/app_light_gray"
             app:cardCornerRadius="180dp"
             app:layout_constraintBottom_toTopOf="@+id/error_badge_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.cardview.widget.CardView
@@ -81,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="260dp"
+            android:layout_marginBottom="244dp"
             android:fontFamily="@font/rajdhani_regular"
             android:text="Scan failed, try again"
             android:textAlignment="center"
@@ -90,7 +88,6 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,14 +31,14 @@
             android:id="@+id/app_auth_stage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="76dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/rajdhani_regular"
             android:text="Create Account"
             android:textColor="#fff"
             android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/app_error_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView

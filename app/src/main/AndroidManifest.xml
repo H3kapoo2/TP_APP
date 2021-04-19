@@ -20,7 +20,21 @@
 
         <activity android:name=".ui_drivers.dashboard_driver.DashboardUIDriver">
         </activity>
+        <activity android:name=".ui_drivers.dashboard_driver.ActivityUIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.dashboard_driver.ProfileUIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.dashboard_driver.SettingsUIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.dashboard_driver.PeopleUIDriver">
+        </activity>
         <activity android:name=".ui_drivers.login_driver.LoginUIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.create_account_driver.CreateAccount1UIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.create_account_driver.CreateAccount2UIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.recovery_driver.RecoveryUIDriver">
         </activity>
     </application>
 

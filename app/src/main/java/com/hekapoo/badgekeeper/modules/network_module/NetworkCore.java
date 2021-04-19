@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner;
  */
 public class NetworkCore {
     private static NetworkCore instance = null;
+    private static Boolean isConnected = false;
 
     private NetworkCore() { }
 
@@ -26,7 +27,15 @@ public class NetworkCore {
     }
 
     //Method used to continuously check if the the place in which the method is called has internet access
-    public void hasInternet(LifecycleOwner owner, Context ctx, connectionStatusInterface status){
+    public void hasInternet(LifecycleOwner owner, Context ctx){
+        NetworkConnection networkConnection = new NetworkConnection(ctx.getApplicationContext());
+        networkConnection.observe(owner, status->{
+            isConnected = status;
+        });
+    }
+
+    //Method used to continuously check if the the place in which the method is called has internet access (callback)
+    public void hasInternetCallback(LifecycleOwner owner, Context ctx,connectionStatusInterface status){
         NetworkConnection networkConnection = new NetworkConnection(ctx.getApplicationContext());
         networkConnection.observe(owner, status::connectionStatus);
     }

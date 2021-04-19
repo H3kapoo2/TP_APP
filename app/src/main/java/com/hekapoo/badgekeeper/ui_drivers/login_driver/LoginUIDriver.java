@@ -14,6 +14,7 @@ import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.DatabaseCore;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkConnection;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
+import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount1UIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
 
 /*
@@ -39,12 +40,15 @@ public class LoginUIDriver extends AppCompatActivity {
         fingerprintBTN = findViewById(R.id.fingerprint_login);
         errorView = findViewById(R.id.app_error_tv);
 
-        NetworkCore.getInstance().hasInternet(this, LoginUIDriver.this, connected -> {
+        //Check internet connectivity
+        NetworkCore.getInstance().hasInternetCallback(this, LoginUIDriver.this, connected -> {
             if (connected) {
                 errorView.setVisibility(View.INVISIBLE);
+                loginBTN.setClickable(true);
             } else {
                 errorView.setVisibility(View.VISIBLE);
                 errorView.setText("No internet connection");
+                loginBTN.setClickable(false);
             }
         });
 
@@ -56,5 +60,16 @@ public class LoginUIDriver extends AppCompatActivity {
             //ceva
         });
 
+        createAccountBTN.setOnClickListener(e->{
+            //launch create account activity
+            Intent intent = new Intent(this, CreateAccount1UIDriver.class);
+            startActivity(intent);
+        });
+
+        recoveryBTN.setOnClickListener(e->{
+            //recover password activity
+            Intent intent = new Intent(this, CreateAccount1UIDriver.class);
+            startActivity(intent);
+        });
     }
 }
