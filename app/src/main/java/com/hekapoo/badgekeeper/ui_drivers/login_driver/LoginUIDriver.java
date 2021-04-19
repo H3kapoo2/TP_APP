@@ -42,6 +42,7 @@ public class LoginUIDriver extends AppCompatActivity {
             //launch intent or throw error
             Intent intent = new Intent(this, DashboardUIDriver.class);
             startActivity(intent);
+            //ceva
         });
 
     }
