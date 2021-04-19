@@ -16,6 +16,7 @@ import com.hekapoo.badgekeeper.modules.network_module.NetworkConnection;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
 import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount1UIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
+import com.hekapoo.badgekeeper.ui_drivers.recovery_driver.RecoveryUIDriver;
 
 /*
  * Main class handling UI for login process.
@@ -68,7 +69,7 @@ public class LoginUIDriver extends AppCompatActivity {
 
         recoveryBTN.setOnClickListener(e->{
             //recover password activity
-            Intent intent = new Intent(this, CreateAccount1UIDriver.class);
+            Intent intent = new Intent(this, RecoveryUIDriver.class);
             startActivity(intent);
         });
     }
