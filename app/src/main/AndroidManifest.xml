@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui_drivers.dashboard_driver.DashboardUIDriver">
+        </activity>
+        <activity android:name=".ui_drivers.login_driver.LoginUIDriver">
+        </activity>
     </application>
 
 </manifest>
