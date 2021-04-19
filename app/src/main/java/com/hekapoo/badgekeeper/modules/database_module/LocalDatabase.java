@@ -17,6 +17,6 @@ public class LocalDatabase {
     }
 
     public boolean getLocalSettings(DatabaseEnums type){
-        return true;
+        return false;
     }
 }
