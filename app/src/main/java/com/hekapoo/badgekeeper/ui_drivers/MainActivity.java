@@ -2,9 +2,13 @@ package com.hekapoo.badgekeeper.ui_drivers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.hekapoo.badgekeeper.R;
+import com.hekapoo.badgekeeper.modules.database_module.DatabaseCore;
+import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
+import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
 
 /*
  * Main class handling start-up of the application.
@@ -14,7 +18,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_screen);
-        //change113
+
+        //If 'keep me logged is active' , skip to main dashboard screen
+        //get this info from the local database thru DatabaseCore
+
+        Intent intent;
+
+        if (DatabaseCore.getInstance().isKeepLoggedActive())
+            intent = new Intent(this, DashboardUIDriver.class);
+        else
+            intent = new Intent(this, LoginUIDriver.class);
+
+        startActivity(intent);
     }
 }
