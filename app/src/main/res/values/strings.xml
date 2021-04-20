@@ -2,7 +2,7 @@
     <string name="app_name">BadgeKeeper</string>
     <string name="login_btn_string"><u>Login</u></string>
     <string name="Next_btn_string"><u>Next</u></string>
-    <string name="confirm_btn_string"><u>Confirm</u></string>
+    <string name="confirm_btn_string"><u>Register</u></string>
     <string name="goback_btn_string"><u>Go Back</u></string>
     <string name="send_recovery_btn_string"><u>Send Recovery Email</u></string>
     <string name="create_acc_btn_string"><u>Create an account</u></string>

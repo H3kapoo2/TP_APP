@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.DatabaseCore;
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         //If 'keep me logged is active' , skip to main dashboard screen
         //get this info from the local database thru DatabaseCore
+
 
         Intent intent;
 
