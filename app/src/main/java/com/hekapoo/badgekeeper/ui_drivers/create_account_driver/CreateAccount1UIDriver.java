@@ -2,10 +2,14 @@ package com.hekapoo.badgekeeper.ui_drivers.create_account_driver;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hekapoo.badgekeeper.R;
+import com.hekapoo.badgekeeper.modules.validation_module.Validator;
 import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
 
 import androidx.annotation.Nullable;
@@ -16,8 +20,8 @@ import org.w3c.dom.Text;
 public class CreateAccount1UIDriver extends AppCompatActivity {
 
     private TextView errorTV;
-    private TextView nextBTN,backBTN;
-    private EditText emailTV,passwordTV,confirmPassTV;
+    private TextView nextBTN, backBTN;
+    private EditText emailTV, passwordTV, confirmPassTV;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,24 +36,78 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
         nextBTN = findViewById(R.id.app_newacc_next_btn);
         backBTN = findViewById(R.id.app_newacc_back_btn);
 
-        backBTN.setOnClickListener(e->{
+        emailTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    errorTV.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        passwordTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorTV.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        confirmPassTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorTV.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        backBTN.setOnClickListener(e -> {
             Intent intent = new Intent(getApplicationContext(), LoginUIDriver.class);
             startActivity(intent);
         });
 
-        nextBTN.setOnClickListener(e->{
+        nextBTN.setOnClickListener(e -> {
 
             String email = emailTV.getText().toString().trim();
             String password = passwordTV.getText().toString().trim();
             String confirmedPass = confirmPassTV.getText().toString().trim();
 
             //validate data
+            Validator validator = Validator.getInstance();
 
-            //send & start new intent
-            Intent intent = new Intent(getApplicationContext(),CreateAccount2UIDriver.class);
-            intent.putExtra("email",email);
-            intent.putExtra("password",password);
-            startActivity(intent);
+            if (validator.email(email, errorTV) && validator.password(password, confirmedPass, errorTV)) {
+                //send & start new intent
+                Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
+                intent.putExtra("email", email);
+                intent.putExtra("password", password);
+                startActivity(intent);
+            }
         });
 
     }
