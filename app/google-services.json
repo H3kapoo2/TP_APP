@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "884361103043",
+    "firebase_url": "https://nokiasmart-29ef5-default-rtdb.firebaseio.com",
+    "project_id": "nokiasmart-29ef5",
+    "storage_bucket": "nokiasmart-29ef5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884361103043:android:04068bf3ffac2a136bc476",
+        "android_client_info": {
+          "package_name": "com.hekapoo.badgekeeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884361103043-ctqsqbt3448v1ci7vchpjjd443bg0ele.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Lv5SY51Uat47jh1FBxRksM3MC3E4nlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884361103043-ctqsqbt3448v1ci7vchpjjd443bg0ele.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,5 +18,5 @@ public class LocalDatabase {
 
     public boolean getLocalSettings(DatabaseEnums type){
         return false;
-    }
+    } //todo: change from local
 }
