@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hekapoo.badgekeeper.R;
+import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
 import com.hekapoo.badgekeeper.modules.validation_module.Validator;
 import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
 
@@ -44,7 +45,7 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    errorTV.setVisibility(View.INVISIBLE);
+                errorTV.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -92,6 +93,18 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //Check internet connectivity
+        NetworkCore.getInstance().hasInternetCallback(this, CreateAccount1UIDriver.this, connected -> {
+            if (connected) {
+                errorTV.setVisibility(View.INVISIBLE);
+                nextBTN.setClickable(true);
+            } else {
+                errorTV.setVisibility(View.VISIBLE);
+                errorTV.setText("No internet connection");
+                nextBTN.setClickable(false);
+            }
+        });
+
         nextBTN.setOnClickListener(e -> {
 
             String email = emailTV.getText().toString().trim();
@@ -101,13 +114,15 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
             //validate data
             Validator validator = Validator.getInstance();
 
-            if (validator.email(email, errorTV) && validator.password(password, confirmedPass, errorTV)) {
-                //send & start new intent
-                Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
-                intent.putExtra("email", email);
-                intent.putExtra("password", password);
-                startActivity(intent);
-            }
+            validator.emailAsync(email, errorTV, success -> {
+                if (success && validator.password(password, confirmedPass, errorTV)) {
+                    //send & start new intent
+                    Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                }
+            });
         });
 
     }

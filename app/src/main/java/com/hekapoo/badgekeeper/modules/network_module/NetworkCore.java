@@ -27,7 +27,7 @@ public class NetworkCore {
     }
 
     //Method used to continuously check if the the place in which the method is called has internet access
-    public void hasInternet(LifecycleOwner owner, Context ctx){
+    public void hasInternetListenerRegister(LifecycleOwner owner, Context ctx){
         NetworkConnection networkConnection = new NetworkConnection(ctx.getApplicationContext());
         networkConnection.observe(owner, status->{
             isConnected = status;
@@ -40,5 +40,6 @@ public class NetworkCore {
         networkConnection.observe(owner, status::connectionStatus);
     }
 
+    public boolean isConnected(){return isConnected;}
 
 }

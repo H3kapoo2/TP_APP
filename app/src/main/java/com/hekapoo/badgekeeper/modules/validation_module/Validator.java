@@ -21,8 +21,8 @@ public class Validator {
         return instance;
     }
 
-    //validate password at user register, push ERROR to errorTV
-    public Boolean password(String password, String confirmPassword, TextView errorTV) {
+    //validate password syntax at user register, push ERROR to errorTV
+    public boolean password(String password, String confirmPassword, TextView errorTV) {
 
         Log.d("pass", "password0: ");
 
@@ -51,48 +51,38 @@ public class Validator {
         return true;
     }
 
-    interface emailValidation{
-        void emailValid(Boolean result);
+    public interface callback{
+        void emailVerif(Boolean result);
     }
 
-    //validate email at user register, push ERROR to errorTV
-    public void preCheckEmailExistsAlready(String email, TextView errorTV,emailValidation valid) {
-
-        //TODO: EMAIL VERIFICATION ASYNC
-
-        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email).addOnCompleteListener(task -> {
-            //check if the email is not in the DB
-            if (task.getResult().getSignInMethods().isEmpty())
-            {
-                valid.emailValid(true);
-            }
-            else {
-                errorTV.setVisibility(View.VISIBLE);
-                errorTV.setText("Email already exists!");
-            }
-
-        });
-
-    }
-
-    public Boolean email(String email, TextView errorTV,emailValidation valid) {
+    //precheck if email already exists in DB, method its async, push ERROR to errorTV
+    //validate email syntax at user register, push ERROR to errorTV
+    public void emailAsync(String email, TextView errorTV,callback valid) {
 
         if (email.isEmpty()) {
             errorTV.setVisibility(View.VISIBLE);
             errorTV.setText("Introduce an email!");
-            return false;
+            valid.emailVerif(false);
+            return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorTV.setVisibility(View.VISIBLE);
             errorTV.setText("Not a valid email pattern!");
-            return false;
+            valid.emailVerif(false);
+            return;
         }
 
-        return true;
+        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email).addOnCompleteListener(task -> {
+            //check if the email is not in the DB
+            if (task.getResult().getSignInMethods().isEmpty())
+                valid.emailVerif(true);
+            else {
+                errorTV.setVisibility(View.VISIBLE);
+                errorTV.setText("Email already exists!");
+                valid.emailVerif(false);
+            }
+
+        });
     }
-
-
-
-    //other validators
 }
