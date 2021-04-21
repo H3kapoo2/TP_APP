@@ -34,8 +34,11 @@
         </activity>
         <activity android:name=".ui_drivers.create_account_driver.CreateAccount2UIDriver">
         </activity>
+        <activity android:name=".ui_drivers.create_account_driver.BadgeScanUIDriver">
+        </activity>
         <activity android:name=".ui_drivers.recovery_driver.RecoveryUIDriver">
         </activity>
+
     </application>
 
 </manifest>

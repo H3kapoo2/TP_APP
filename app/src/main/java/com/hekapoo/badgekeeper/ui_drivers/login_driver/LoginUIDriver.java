@@ -77,6 +77,7 @@ public class LoginUIDriver extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //TODO: HAS bug,doesnt always verify,only on change
         //Check internet connectivity
         NetworkCore.getInstance().hasInternetCallback(this, LoginUIDriver.this, connected -> {
             if (connected) {
@@ -90,4 +91,6 @@ public class LoginUIDriver extends AppCompatActivity {
         });
 
     }
+
+
 }

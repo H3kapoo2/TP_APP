@@ -42,11 +42,8 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
             String confirmedPass = confirmPassTV.getText().toString().trim();
 
             //validate data
-            ValidatorCore validatorCore = ValidatorCore.getInstance();
-
-            //TODO: refactor into one method
-            validatorCore.emailAsync(email, errorTV, success -> {
-                if (success && validatorCore.password(password, confirmedPass, errorTV)) {
+            ValidatorCore.getInstance().emailAndPasswordsAsync(email, password,confirmedPass,errorTV, success -> {
+                if (success) {
                     //send & start new intent
                     Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
                     intent.putExtra("email", email);

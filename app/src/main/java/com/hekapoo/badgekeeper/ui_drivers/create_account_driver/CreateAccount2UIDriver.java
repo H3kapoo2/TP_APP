@@ -66,7 +66,6 @@ public class CreateAccount2UIDriver extends AppCompatActivity {
                     departmentTV);
         });
 
-        //TODO: Normally start scan badge activity and only if that's successful we should start the dashboard
         registerBTN.setOnClickListener(e -> {
 
             //retrieve data from previous intent
@@ -83,21 +82,17 @@ public class CreateAccount2UIDriver extends AppCompatActivity {
             //create user schema on success
             UserSchema newUser = new UserSchema(email, department, localization, cardID, cardNumber);
 
-            ValidatorCore validator = ValidatorCore.getInstance();
-
-            if (validator.userSchema(newUser, errorTV))
-                FirebaseDB.getInstance().registerNewUser(email, password, newUser, isSuccessful -> {
-                    //on successful register,redirect to dashboard
-                    if (isSuccessful) {
-                        errorTV.setVisibility(View.INVISIBLE);
-                        Intent intentDashboard = new Intent(getApplicationContext(), DashboardUIDriver.class);
-                        startActivity(intentDashboard);
-                    } else {
-                        errorTV.setVisibility(View.VISIBLE);
-                        errorTV.setText("Register error,please try again!");
-                        Log.d("FB_REGISTER", "failed");
-                    }
-                });
+            //if all valid launch badge scan activity passing data along
+            if(ValidatorCore.getInstance().userSchema(newUser,errorTV)){
+                Intent intentDashboard = new Intent(getApplicationContext(), BadgeScanUIDriver.class);
+                intentDashboard.putExtra("email",email);
+                intentDashboard.putExtra("password",password);
+                intentDashboard.putExtra("localization",localization);
+                intentDashboard.putExtra("department",department);
+                intentDashboard.putExtra("cardID",cardID);
+                intentDashboard.putExtra("cardNumber",cardNumber);
+                startActivity(intentDashboard);
+            }
         });
 
         //listeners to reset errorTV message on text change
@@ -169,6 +164,7 @@ public class CreateAccount2UIDriver extends AppCompatActivity {
             }
         });
 
+        //TODO: better continuous network checking
         //Check internet connectivity
         NetworkCore.getInstance().hasInternetCallback(this, CreateAccount2UIDriver.this, connected -> {
             if (connected) {
