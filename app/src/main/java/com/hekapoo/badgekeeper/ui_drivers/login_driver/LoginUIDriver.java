@@ -15,8 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.DatabaseCore;
+import com.hekapoo.badgekeeper.modules.database_module.FirebaseDB;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkConnection;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
+import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
 import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount1UIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.recovery_driver.RecoveryUIDriver;
@@ -44,6 +46,37 @@ public class LoginUIDriver extends AppCompatActivity {
         fingerprintBTN = findViewById(R.id.fingerprint_login);
         errorView = findViewById(R.id.app_error_tv);
 
+
+        loginBTN.setOnClickListener(e -> {
+
+            String email = emailET.getText().toString().trim();
+            String password = passwordET.getText().toString().trim();
+
+            //validate data with db & try to log the user in
+            if (ValidatorCore.getInstance().login(password, email, errorView))
+                FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
+                    if (loggedIn) {
+                        Intent intent = new Intent(this, DashboardUIDriver.class);
+                        startActivity(intent);
+                    } else {
+                        errorView.setVisibility(View.VISIBLE);
+                        errorView.setText("Invalid credentials!");
+                    }
+                });
+        });
+
+        createAccountBTN.setOnClickListener(e -> {
+            //launch create account activity
+            Intent intent = new Intent(this, CreateAccount1UIDriver.class);
+            startActivity(intent);
+        });
+
+        recoveryBTN.setOnClickListener(e -> {
+            //recover password activity
+            Intent intent = new Intent(this, RecoveryUIDriver.class);
+            startActivity(intent);
+        });
+
         //Check internet connectivity
         NetworkCore.getInstance().hasInternetCallback(this, LoginUIDriver.this, connected -> {
             if (connected) {
@@ -56,24 +89,5 @@ public class LoginUIDriver extends AppCompatActivity {
             }
         });
 
-        loginBTN.setOnClickListener(e -> {
-            //validate data with database
-            //launch intent or throw error
-            Intent intent = new Intent(this, DashboardUIDriver.class);
-            startActivity(intent);
-            //ceva
-        });
-
-        createAccountBTN.setOnClickListener(e->{
-            //launch create account activity
-            Intent intent = new Intent(this, CreateAccount1UIDriver.class);
-            startActivity(intent);
-        });
-
-        recoveryBTN.setOnClickListener(e->{
-            //recover password activity
-            Intent intent = new Intent(this, RecoveryUIDriver.class);
-            startActivity(intent);
-        });
     }
 }

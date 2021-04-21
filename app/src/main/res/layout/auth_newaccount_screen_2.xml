@@ -67,8 +67,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <EditText
-                android:id="@+id/newacc_local_et"
+            <TextView
+                android:id="@+id/newacc_local_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -96,8 +96,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <EditText
-                android:id="@+id/newacc_dept_et"
+            <TextView
+                android:id="@+id/newacc_dept_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -105,7 +105,6 @@
                 android:ems="10"
                 android:fontFamily="@font/rajdhani_regular"
                 android:hint="Department"
-                android:inputType="textPassword"
                 android:maxLength="100"
                 android:textAlignment="center"
                 android:textColorHint="@color/text_hint_color"
@@ -125,6 +124,8 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <EditText
+                android:inputType="number"
+                android:maxLines="1"
                 android:id="@+id/newacc_auth_cardid_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,8 +134,7 @@
                 android:ems="10"
                 android:fontFamily="@font/rajdhani_regular"
                 android:hint="Card ID"
-                android:inputType="textPassword"
-                android:maxLength="100"
+                android:maxLength="12"
                 android:textAlignment="center"
                 android:textColorHint="@color/text_hint_color"
                 android:textSize="22sp" />
@@ -153,6 +153,8 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <EditText
+                android:inputType="number"
+                android:maxLines="1"
                 android:id="@+id/newacc_card_number_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,14 +163,15 @@
                 android:ems="10"
                 android:fontFamily="@font/rajdhani_regular"
                 android:hint="Card Number"
-                android:inputType="textPassword"
-                android:maxLength="100"
+                android:maxLength="12"
                 android:textAlignment="center"
                 android:textColorHint="@color/text_hint_color"
                 android:textSize="22sp" />
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:background="@drawable/ripple"
+            android:paddingHorizontal="10dp"
             android:id="@+id/app_newacc_next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,10 +184,11 @@
             android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/app_newacc_back_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:background="@drawable/ripple"
+            android:paddingHorizontal="10dp"
             android:id="@+id/app_newacc_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

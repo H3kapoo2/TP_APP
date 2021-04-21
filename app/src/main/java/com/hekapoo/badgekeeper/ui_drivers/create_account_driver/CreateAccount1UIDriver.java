@@ -10,13 +10,11 @@ import android.widget.TextView;
 
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
-import com.hekapoo.badgekeeper.modules.validation_module.Validator;
+import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
 import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 public class CreateAccount1UIDriver extends AppCompatActivity {
 
@@ -37,6 +35,28 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
         nextBTN = findViewById(R.id.app_newacc_next_btn);
         backBTN = findViewById(R.id.app_newacc_back_btn);
 
+        nextBTN.setOnClickListener(e -> {
+
+            String email = emailTV.getText().toString().trim();
+            String password = passwordTV.getText().toString().trim();
+            String confirmedPass = confirmPassTV.getText().toString().trim();
+
+            //validate data
+            ValidatorCore validatorCore = ValidatorCore.getInstance();
+
+            //TODO: refactor into one method
+            validatorCore.emailAsync(email, errorTV, success -> {
+                if (success && validatorCore.password(password, confirmedPass, errorTV)) {
+                    //send & start new intent
+                    Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                }
+            });
+        });
+
+        //listeners to reset errorTV message on text change
         emailTV.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -104,26 +124,5 @@ public class CreateAccount1UIDriver extends AppCompatActivity {
                 nextBTN.setClickable(false);
             }
         });
-
-        nextBTN.setOnClickListener(e -> {
-
-            String email = emailTV.getText().toString().trim();
-            String password = passwordTV.getText().toString().trim();
-            String confirmedPass = confirmPassTV.getText().toString().trim();
-
-            //validate data
-            Validator validator = Validator.getInstance();
-
-            validator.emailAsync(email, errorTV, success -> {
-                if (success && validator.password(password, confirmedPass, errorTV)) {
-                    //send & start new intent
-                    Intent intent = new Intent(getApplicationContext(), CreateAccount2UIDriver.class);
-                    intent.putExtra("email", email);
-                    intent.putExtra("password", password);
-                    startActivity(intent);
-                }
-            });
-        });
-
     }
 }
