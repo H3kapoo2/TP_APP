@@ -2,8 +2,10 @@ package com.hekapoo.badgekeeper.modules.database_module;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.util.Log;
 
+import com.hekapoo.badgekeeper.modules.utils_module.SettingsSchema;
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
 
@@ -21,6 +23,51 @@ public class LocalDatabase {
         if (instance == null)
             instance = new LocalDatabase();
         return instance;
+    }
+
+    public boolean isInit(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+
+        return localDB.getBoolean("app_init",false);
+    }
+
+    public void firstTimeLocalSetup(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = localDB.edit();
+
+        editor.putBoolean("app_fingerprint",false);
+        editor.putBoolean("app_keeplogin",false);
+        editor.putBoolean("app_notifs",true);
+        editor.putString("app_language","English");
+
+        editor.putBoolean("app_init",true);
+
+
+        editor.commit();
+    }
+
+    public SettingsSchema getLocalSettings(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+
+        boolean isFingerprint = localDB.getBoolean("app_fingerprint",false);
+        boolean isKeepLogin = localDB.getBoolean("app_keeplogin",false);
+        boolean isNotifications = localDB.getBoolean("app_notifs",false);
+        String language = localDB.getString("app_language","");
+
+        return new SettingsSchema(language,isFingerprint,isKeepLogin,isNotifications);
+
+    }
+
+    public void saveLocalSettings(SettingsSchema settings,Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = localDB.edit();
+
+        editor.putBoolean("app_fingerprint",settings.isFingerprintLogin());
+        editor.putBoolean("app_keeplogin",settings.isKeepLogin());
+        editor.putBoolean("app_notifs",settings.isNotifications());
+        editor.putString("app_language",settings.getLanguage());
+
+        editor.commit();
     }
 
     public boolean getLocalSettings(DatabaseEnums type) {

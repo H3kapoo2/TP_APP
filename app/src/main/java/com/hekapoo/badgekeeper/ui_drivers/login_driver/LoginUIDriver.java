@@ -2,6 +2,8 @@ package com.hekapoo.badgekeeper.ui_drivers.login_driver;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -47,6 +49,34 @@ public class LoginUIDriver extends AppCompatActivity {
         fingerprintBTN = findViewById(R.id.fingerprint_login);
         errorView = findViewById(R.id.app_error_tv);
 
+        //todo: replace this with actual fingerprint, this could play the role of keep me logged in
+//        fingerprintBTN.setOnClickListener(e->{
+//
+//            if(LocalDatabase.getInstance().getLocalSettings(this).isFingerprintLogin()){
+//
+//                String email = LocalDatabase.getInstance().loadUserLocally(this).getEmail();
+//                String password =LocalDatabase.getInstance().loadUserLocally(this).getPassword();
+//
+//                //try to log the user in
+//                FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
+//                    if (loggedIn) {
+//
+//                        Intent intent = new Intent(this, DashboardUIDriver.class);
+//
+//                        //get user data from fb db to pass to dashboard
+//                        FirebaseDB.getInstance().getUserFirebase(resultUser -> {
+//                            if (resultUser != null) {
+//                                LocalDatabase.getInstance().saveUserLocally(resultUser, this);
+//                                startActivity(intent);
+//                            }
+//                        });
+//                    }
+//                });
+//            }else{
+//                errorView.setVisibility(View.VISIBLE);
+//                errorView.setText("Fingerprint login not enabled!");
+//            }
+//        });
 
         loginBTN.setOnClickListener(e -> {
 
@@ -88,6 +118,40 @@ public class LoginUIDriver extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        emailET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        passwordET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         //TODO: HAS bug,doesnt always verify,only on change
         //Check internet connectivity
         NetworkCore.getInstance().hasInternetCallback(this, LoginUIDriver.this, connected -> {

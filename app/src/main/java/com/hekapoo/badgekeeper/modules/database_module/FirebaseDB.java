@@ -118,7 +118,7 @@ public class FirebaseDB {
 
                 if (!userMap.isEmpty()) {
                     result.onComplete(new UserSchema(
-                            userMap.get("pass"),
+                            userMap.get("password"),
                             userMap.get("email"),
                             userMap.get("department"),
                             userMap.get("localization"),

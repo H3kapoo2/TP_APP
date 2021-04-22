@@ -3,6 +3,7 @@ import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.FirebaseDB;
 import com.hekapoo.badgekeeper.modules.database_module.LocalDatabase;
 import com.hekapoo.badgekeeper.modules.utils_module.DialogUtils;
+import com.hekapoo.badgekeeper.modules.utils_module.SettingsSchema;
 import com.hekapoo.badgekeeper.modules.utils_module.TextParser;
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount2UIDriver;
@@ -60,6 +61,14 @@ public class ProfileUIDriver extends AppCompatActivity {
         //logout on click
         logoutTV.setOnClickListener(e->{
             FirebaseDB.getInstance().logout();
+
+            //reset auth related things on logout
+            SettingsSchema settings = LocalDatabase.getInstance().getLocalSettings(this);
+            settings.setKeepLogin(false);
+            settings.setFingerprintLogin(false);
+
+            LocalDatabase.getInstance().saveLocalSettings(settings,this);
+
             Intent intent = new Intent(this, LoginUIDriver.class);
             startActivity(intent);
         });
