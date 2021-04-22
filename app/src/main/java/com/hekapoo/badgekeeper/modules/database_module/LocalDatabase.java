@@ -2,8 +2,10 @@ package com.hekapoo.badgekeeper.modules.database_module;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.util.Log;
 
+import com.hekapoo.badgekeeper.modules.utils_module.SettingsSchema;
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
 
@@ -23,6 +25,51 @@ public class LocalDatabase {
         return instance;
     }
 
+    public boolean isInit(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+
+        return localDB.getBoolean("app_init",false);
+    }
+
+    public void firstTimeLocalSetup(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = localDB.edit();
+
+        editor.putBoolean("app_fingerprint",false);
+        editor.putBoolean("app_keeplogin",false);
+        editor.putBoolean("app_notifs",true);
+        editor.putString("app_language","English");
+
+        editor.putBoolean("app_init",true);
+
+
+        editor.commit();
+    }
+
+    public SettingsSchema getLocalSettings(Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+
+        boolean isFingerprint = localDB.getBoolean("app_fingerprint",false);
+        boolean isKeepLogin = localDB.getBoolean("app_keeplogin",false);
+        boolean isNotifications = localDB.getBoolean("app_notifs",false);
+        String language = localDB.getString("app_language","");
+
+        return new SettingsSchema(language,isFingerprint,isKeepLogin,isNotifications);
+
+    }
+
+    public void saveLocalSettings(SettingsSchema settings,Context ctx){
+        SharedPreferences localDB = ctx.getSharedPreferences("APP_SETTINGS", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = localDB.edit();
+
+        editor.putBoolean("app_fingerprint",settings.isFingerprintLogin());
+        editor.putBoolean("app_keeplogin",settings.isKeepLogin());
+        editor.putBoolean("app_notifs",settings.isNotifications());
+        editor.putString("app_language",settings.getLanguage());
+
+        editor.commit();
+    }
+
     public boolean getLocalSettings(DatabaseEnums type) {
         return false;
     } //todo: change from local
@@ -32,6 +79,7 @@ public class LocalDatabase {
         SharedPreferences localDB = ctx.getSharedPreferences("USER_LOCAL", 0); // 0 - for private mode
         SharedPreferences.Editor editor = localDB.edit();
 
+        editor.putString("user_password",user.getPassword());
         editor.putString("user_email",user.getEmail());
         editor.putString("user_localization",user.getLocalization());
         editor.putString("user_department",user.getDepartment());
@@ -46,6 +94,7 @@ public class LocalDatabase {
 
         SharedPreferences localDB = ctx.getSharedPreferences("USER_LOCAL", 0); // 0 - for private mode
 
+        String password = localDB.getString("user_password","");
         String email = localDB.getString("user_email","");
         String localization = localDB.getString("user_localization","");
         String department = localDB.getString("user_department","");
@@ -53,7 +102,7 @@ public class LocalDatabase {
         String cardNumber = localDB.getString("user_cardNumber","");
         String workHours = localDB.getString("user_workHours","");
 
-        UserSchema user = new UserSchema(email,department,localization,cardID,cardNumber,workHours);
+        UserSchema user = new UserSchema(password,email,department,localization,cardID,cardNumber,workHours);
 
         if(ValidatorCore.getInstance().userLocallyLoad(user))
             return user;

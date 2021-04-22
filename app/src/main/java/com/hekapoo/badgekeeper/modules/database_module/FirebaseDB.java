@@ -55,6 +55,13 @@ public class FirebaseDB {
         });
     }
 
+    public void sendRecoveryEmail(String email,callback result){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+            result.onComplete(task.isSuccessful());
+        });
+    }
+
     //register and save data to fb
     public void registerNewUser(String email, String password, UserSchema schema, callback result) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -110,7 +117,9 @@ public class FirebaseDB {
                 userMap = (Map<String, String>) task.getResult().getValue();
 
                 if (!userMap.isEmpty()) {
-                    result.onComplete(new UserSchema(userMap.get("email"),
+                    result.onComplete(new UserSchema(
+                            userMap.get("password"),
+                            userMap.get("email"),
                             userMap.get("department"),
                             userMap.get("localization"),
                             userMap.get("cardID"),

@@ -74,6 +74,17 @@ public class ValidatorCore {
         return true;
     }
 
+    public boolean email(String email){
+        if (email.isEmpty())
+            return false;
+
+        //todo: validate email to be of the form xxx.xxxx@nokia.com ONLY
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+            return false;
+
+        return true;
+    }
+
     //validate email and passwords async,push ERROR to errorTV
     public void emailAndPasswordsAsync(String email, String password, String confirmPass, TextView errorTV, callback valid) {
 
