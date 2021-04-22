@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         if (DatabaseCore.getInstance().isKeepLoggedActive())
             intent = new Intent(this, DashboardUIDriver.class);
         else
-            intent = new Intent(this, CreateAccount1UIDriver.class);
+            intent = new Intent(this, LoginUIDriver.class);
 
         startActivity(intent);
     }

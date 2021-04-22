@@ -85,6 +85,9 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:id="@+id/badge_name1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/rajdhani_bold"
@@ -94,6 +97,9 @@
                                 android:textSize="26sp" />
 
                             <TextView
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:id="@+id/badge_name2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/rajdhani_bold"
@@ -102,6 +108,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
+                                android:id="@+id/badge_localization"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -183,6 +190,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
             <TextView
+                android:id="@+id/bagde_goal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -195,6 +203,7 @@
                 tools:ignore="RtlCompat" />
 
             <TextView
+                android:id="@+id/badge_current_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -240,6 +249,8 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:clickable="true"
+                    android:id="@+id/activity_im"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:cardBackgroundColor="@color/badge_color"
@@ -270,6 +281,8 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:clickable="true"
+                    android:id="@+id/people_im"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:cardBackgroundColor="@color/badge_color"
@@ -301,6 +314,8 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:clickable="true"
+                    android:id="@+id/profile_im"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:cardBackgroundColor="@color/badge_color"
@@ -332,6 +347,8 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:clickable="true"
+                    android:id="@+id/settings_im"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:cardBackgroundColor="@color/badge_color"

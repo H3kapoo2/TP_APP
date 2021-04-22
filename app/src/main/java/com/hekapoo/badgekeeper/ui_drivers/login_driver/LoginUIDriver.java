@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.DatabaseCore;
 import com.hekapoo.badgekeeper.modules.database_module.FirebaseDB;
+import com.hekapoo.badgekeeper.modules.database_module.LocalDatabase;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkConnection;
 import com.hekapoo.badgekeeper.modules.network_module.NetworkCore;
 import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
@@ -52,12 +53,22 @@ public class LoginUIDriver extends AppCompatActivity {
             String email = emailET.getText().toString().trim();
             String password = passwordET.getText().toString().trim();
 
-            //validate data with db & try to log the user in
+            //validate data with db
             if (ValidatorCore.getInstance().login(password, email, errorView))
+                //try to log the user in
                 FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
                     if (loggedIn) {
+
                         Intent intent = new Intent(this, DashboardUIDriver.class);
-                        startActivity(intent);
+
+                        //get user data from fb db to pass to dashboard
+                        FirebaseDB.getInstance().getUserFirebase(resultUser -> {
+                            if (resultUser != null) {
+                                LocalDatabase.getInstance().saveUserLocally(resultUser, this);
+                                startActivity(intent);
+                            } else
+                                errorView.setText("Database error,please try later!");
+                        });
                     } else {
                         errorView.setVisibility(View.VISIBLE);
                         errorView.setText("Invalid credentials!");
@@ -77,6 +88,7 @@ public class LoginUIDriver extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //TODO: HAS bug,doesnt always verify,only on change
         //Check internet connectivity
         NetworkCore.getInstance().hasInternetCallback(this, LoginUIDriver.this, connected -> {
             if (connected) {
@@ -90,4 +102,9 @@ public class LoginUIDriver extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+    }
+
 }

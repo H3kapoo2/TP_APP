@@ -42,6 +42,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:clickable="true"
             android:id="@+id/external_approach_badge_cv"
             android:layout_width="220dp"
             android:layout_height="220dp"

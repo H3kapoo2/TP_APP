@@ -23,6 +23,10 @@ public class ValidatorCore {
         return instance;
     }
 
+    public interface callback {
+        void onComplete(Boolean result);
+    }
+
     //validate login credentials
     public boolean login(String password, String email, TextView errorTV) {
 
@@ -41,7 +45,7 @@ public class ValidatorCore {
 
     }
 
-    //validate password syntax at user register, push ERROR to errorTV
+    //validate password syntax, push ERROR to errorTV
     public boolean password(String password, String confirmPassword, TextView errorTV) {
 
         Log.d("pass", "password0: ");
@@ -70,13 +74,8 @@ public class ValidatorCore {
         return true;
     }
 
-    public interface callback {
-        void onComplete(Boolean result);
-    }
-
-    //precheck if email already exists in DB, method its async, push ERROR to errorTV
-    //validate email syntax at user register, push ERROR to errorTV
-    public void emailAsync(String email, TextView errorTV, callback valid) {
+    //validate email and passwords async,push ERROR to errorTV
+    public void emailAndPasswordsAsync(String email, String password, String confirmPass, TextView errorTV, callback valid) {
 
         if (email.isEmpty()) {
             errorTV.setVisibility(View.VISIBLE);
@@ -84,7 +83,8 @@ public class ValidatorCore {
             valid.onComplete(false);
             return;
         }
-
+        //todo: validate email to be of the form xxx.xxxx@nokia.com ONLY
+        //todo:
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorTV.setVisibility(View.VISIBLE);
             errorTV.setText("Not a valid email pattern!");
@@ -98,7 +98,7 @@ public class ValidatorCore {
                 errorTV.setText("Email already exists!");
                 valid.onComplete(false);
             } else
-                valid.onComplete(true);
+                valid.onComplete(password(password, confirmPass, errorTV));
         });
     }
 
@@ -144,6 +144,17 @@ public class ValidatorCore {
             return false;
         }
 
+        return true;
+    }
+
+    //validate user locally loaded data
+    public boolean userLocallyLoad(UserSchema user){
+        if(user.getEmail().isEmpty() ||
+                user.getLocalization().isEmpty() ||
+                user.getDepartment().isEmpty() ||
+                user.getCardID().isEmpty() ||
+                user.getCardNumber().isEmpty())
+            return false;
         return true;
     }
 }
