@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BadgeKeeper">
-        <activity android:name=".ui_drivers.MainActivity">
+        <activity android:name=".ui_drivers.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,25 +20,45 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui_drivers.dashboard_driver.DashboardUIDriver">
+        <activity android:name=".ui_drivers.dashboard_driver.DashboardUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.dashboard_driver.ActivityUIDriver">
+        <activity android:name=".ui_drivers.dashboard_driver.ActivityUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.dashboard_driver.ProfileUIDriver">
+        <activity android:name=".ui_drivers.dashboard_driver.ProfileUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.dashboard_driver.SettingsUIDriver">
+        <activity android:name=".ui_drivers.dashboard_driver.SettingsUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.dashboard_driver.PeopleUIDriver">
+        <activity android:name=".ui_drivers.dashboard_driver.PeopleUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.login_driver.LoginUIDriver">
+        <activity android:name=".ui_drivers.login_driver.LoginUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.create_account_driver.CreateAccount1UIDriver">
+        <activity android:name=".ui_drivers.create_account_driver.CreateAccount1UIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.create_account_driver.CreateAccount2UIDriver">
+        <activity android:name=".ui_drivers.create_account_driver.CreateAccount2UIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.create_account_driver.BadgeScanUIDriver">
+        <activity android:name=".ui_drivers.create_account_driver.BadgeScanUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui_drivers.recovery_driver.RecoveryUIDriver">
+        <activity android:name=".ui_drivers.recovery_driver.RecoveryUIDriver"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

@@ -3,8 +3,10 @@ import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.FirebaseDB;
 import com.hekapoo.badgekeeper.modules.database_module.LocalDatabase;
 import com.hekapoo.badgekeeper.modules.utils_module.DialogUtils;
+import com.hekapoo.badgekeeper.modules.utils_module.TextParser;
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount2UIDriver;
+import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileUIDriver extends AppCompatActivity {
 
-    TextView emailTV,userNameTV,localizationTV,cardIDTV,cardNumberTV,workHoursTV,departmentTV;
+    TextView emailTV,userNameTV,localizationTV,cardIDTV,cardNumberTV,workHoursTV,departmentTV,logoutTV;
     ImageView backBTN;
 
     @Override
@@ -35,6 +37,7 @@ public class ProfileUIDriver extends AppCompatActivity {
         cardNumberTV = findViewById(R.id.profile_cardNumber);
         workHoursTV = findViewById(R.id.profile_workHours);
         departmentTV = findViewById(R.id.profile_department);
+        logoutTV = findViewById(R.id.profile_logout);
 
         backBTN = findViewById(R.id.profile_back);
 
@@ -43,8 +46,10 @@ public class ProfileUIDriver extends AppCompatActivity {
         UserSchema user = LocalDatabase.getInstance().loadUserLocally(this);
         Log.d("user", "profile non existent: " + (user == null));
 
+        String userName = TextParser.getInstance().parseProfileUsername(user.getEmail());
+
         emailTV.setText(user.getEmail());
-        userNameTV.setText(user.getEmail()); //todo: parse into parts and uppercase first letter
+        userNameTV.setText(userName);
         localizationTV.setText(user.getLocalization());
         departmentTV.setText(user.getDepartment());
         cardIDTV.setText(user.getCardID());
@@ -52,6 +57,12 @@ public class ProfileUIDriver extends AppCompatActivity {
         workHoursTV.setText(user.getWorkHours());
 
 
+        //logout on click
+        logoutTV.setOnClickListener(e->{
+            FirebaseDB.getInstance().logout();
+            Intent intent = new Intent(this, LoginUIDriver.class);
+            startActivity(intent);
+        });
         //localization on click dialog picker
         localizationTV.setOnClickListener(e -> {
             DialogUtils.getInstance().buildAndShowPickerDialog("Localization",

@@ -124,4 +124,9 @@ public class FirebaseDB {
             }
         });
     }
+
+    //sign out user
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+    }
 }

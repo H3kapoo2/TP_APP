@@ -85,6 +85,8 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:ellipsize="end"
+                                android:maxLines="1"
                                 android:id="@+id/badge_name1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -95,6 +97,8 @@
                                 android:textSize="26sp" />
 
                             <TextView
+                                android:ellipsize="end"
+                                android:maxLines="1"
                                 android:id="@+id/badge_name2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

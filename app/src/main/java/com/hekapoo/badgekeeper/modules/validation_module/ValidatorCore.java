@@ -83,7 +83,8 @@ public class ValidatorCore {
             valid.onComplete(false);
             return;
         }
-
+        //todo: validate email to be of the form xxx.xxxx@nokia.com ONLY
+        //todo:
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorTV.setVisibility(View.VISIBLE);
             errorTV.setText("Not a valid email pattern!");

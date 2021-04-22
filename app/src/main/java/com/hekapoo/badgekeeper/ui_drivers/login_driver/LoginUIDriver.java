@@ -103,5 +103,8 @@ public class LoginUIDriver extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 
 }

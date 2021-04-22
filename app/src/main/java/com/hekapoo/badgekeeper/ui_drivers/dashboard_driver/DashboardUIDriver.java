@@ -12,7 +12,10 @@ import androidx.cardview.widget.CardView;
 
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.LocalDatabase;
+import com.hekapoo.badgekeeper.modules.utils_module.TextParser;
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
+
+import org.w3c.dom.Text;
 
 public class DashboardUIDriver extends AppCompatActivity {
 
@@ -40,15 +43,14 @@ public class DashboardUIDriver extends AppCompatActivity {
         UserSchema user = LocalDatabase.getInstance().loadUserLocally(this);
         Log.d("user", "dashboard non existent: " + (user == null));
 
-        //todo: validate email to be of the form xxx.xxxx@nokia.com ONLY
-        //this should pass for now ^
-        String firstName = user.getEmail().split("@")[0].split("\\.")[0].toUpperCase();
-        String lastName = user.getEmail().split("@")[0].split("\\.")[1].toUpperCase();
+        String[] firstNameLastName = TextParser.getInstance().parseDashboardName(user.getEmail());
 
-        firstNameTV.setText(firstName);
-        lastNameTV.setText(lastName);
+        firstNameTV.setText(firstNameLastName[0]);
+        lastNameTV.setText(firstNameLastName[1]);
         localizationTV.setText(user.getLocalization());
         workGoalTV.setText(user.getWorkHours());
+
+        //todo: stop user from going back button,if he does,close application instead
 
         //todo:
         //for WORK_DONE start at zero when the badge is first scanned that day
@@ -76,5 +78,9 @@ public class DashboardUIDriver extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
