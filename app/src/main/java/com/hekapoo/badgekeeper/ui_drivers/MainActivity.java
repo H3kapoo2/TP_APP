@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hekapoo.badgekeeper.R;
@@ -13,6 +14,10 @@ import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount1UI
 import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount2UIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.login_driver.LoginUIDriver;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /*
  * Main class handling start-up of the application.

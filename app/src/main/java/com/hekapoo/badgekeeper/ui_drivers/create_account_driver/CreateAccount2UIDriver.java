@@ -80,7 +80,7 @@ public class CreateAccount2UIDriver extends AppCompatActivity {
             String cardNumber = cardNumberET.getText().toString().trim();
 
             //create user schema on success
-            UserSchema newUser = new UserSchema(email, department, localization, cardID, cardNumber,"will-go-to-default-8h");
+            UserSchema newUser = new UserSchema(password,email, department, localization, cardID, cardNumber,"will-go-to-default-8h");
 
             //if all valid launch badge scan activity passing data along
             if(ValidatorCore.getInstance().userSchema(newUser,errorTV)){

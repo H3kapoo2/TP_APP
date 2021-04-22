@@ -32,6 +32,7 @@ public class LocalDatabase {
         SharedPreferences localDB = ctx.getSharedPreferences("USER_LOCAL", 0); // 0 - for private mode
         SharedPreferences.Editor editor = localDB.edit();
 
+        editor.putString("user_password",user.getPassword());
         editor.putString("user_email",user.getEmail());
         editor.putString("user_localization",user.getLocalization());
         editor.putString("user_department",user.getDepartment());
@@ -46,6 +47,7 @@ public class LocalDatabase {
 
         SharedPreferences localDB = ctx.getSharedPreferences("USER_LOCAL", 0); // 0 - for private mode
 
+        String password = localDB.getString("user_password","");
         String email = localDB.getString("user_email","");
         String localization = localDB.getString("user_localization","");
         String department = localDB.getString("user_department","");
@@ -53,7 +55,7 @@ public class LocalDatabase {
         String cardNumber = localDB.getString("user_cardNumber","");
         String workHours = localDB.getString("user_workHours","");
 
-        UserSchema user = new UserSchema(email,department,localization,cardID,cardNumber,workHours);
+        UserSchema user = new UserSchema(password,email,department,localization,cardID,cardNumber,workHours);
 
         if(ValidatorCore.getInstance().userLocallyLoad(user))
             return user;

@@ -2,18 +2,27 @@ package com.hekapoo.badgekeeper.modules.utils_module;
 
 public class UserSchema {
 
-    public String email,department,localization,cardID,cardNumber,workHours;
+    public String email,department,localization,cardID,cardNumber,workHours,password;
 
-    public UserSchema(String email, String department, String localization, String cardID, String cardNumber,String workHours) {
+    public UserSchema(String password,String email, String department, String localization, String cardID, String cardNumber,String workHours) {
         this.email = email;
         this.department = department;
         this.localization = localization;
         this.cardID = cardID;
         this.cardNumber = cardNumber;
         this.workHours = workHours;
+        this.password = password;
     }
 
     public UserSchema(){}
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
