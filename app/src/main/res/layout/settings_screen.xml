@@ -145,7 +145,7 @@
                 android:gravity="right">
 
                 <Switch
-                    android:id="@+id/settings_notifications"
+                    android:id="@+id/settings_notifs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />

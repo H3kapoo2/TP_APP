@@ -1,5 +1,6 @@
 package com.hekapoo.badgekeeper.ui_drivers.dashboard_driver;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -24,9 +25,15 @@ public class SettingsUIDriver extends AppCompatActivity {
         fingerprintLoginSW = findViewById(R.id.settings_fingerprint);
         languageTV = findViewById(R.id.settings_language);
         keepLogInSW = findViewById(R.id.settings_keeplogin);
-        notifSW = findViewById(R.id.settings_notifications);
+        notifSW = findViewById(R.id.settings_notifs);
 
         //todo: load user saved settings for this app
+
+        fingerprintLoginSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+
+            }
+        });
 
     }
 }

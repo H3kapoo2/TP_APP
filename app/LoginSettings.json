@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "nokiasmart-29ef5",
+  "private_key_id": "91009142be31f167704666abb876f2fdcb96e710",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNgQ4/F5W2jVvN\nRuhPbfMk+BZgnHDi7c0103VbU8RUktxLDdndVM/ubxBkmqbWJkz34RwTZ2UQ46S2\nPUS8OzPwPX9jKQqAuvIGaz/9u96FNAvN1HQXh3j6IidFe6WsxqpSLs1gzeAPbm4+\nQmK42yqqwSNjCtPw4KtPsJszpfh3iFQEn9jxrHqCS2PnnHCM1kqrj7O4JlNutj1H\n3r4rznZKSrYeqTG4lOC5MT4vuVZZ47xy71p9WPzc9idhPKdQ2gUyby0Y/aAOyaWZ\nUJIOHHTdS2RoKmjbyzs4mamlwWV8A5lps4karCAuN7DdCLqKPMUI1ziP14BxK++Q\nISnomRb5AgMBAAECggEAHltxUHuk7OXT3llE/wV1ygvF486oVGAe6ikgaHXRhlF4\nLl7PmgT/KbCJbOXK6HlERx0fXx8XzGy8YQQK+n1fuPOfX6AT7PFGHbxLzykoqr0F\n/gljft2keYWAZKC/2BaJhCtla7vt3Im1H7MBz1883c2QcynfJhxM4jBAtQVQVM5w\nb9j0q/mFF9nfhAjYPalyIIeH6UW97eEyCDXPa6r252tVUVhm/J8oPtpIrM4lMbQF\n3UxYn8RVz9B+IHc4/xlyGvl5B/E6r6u6caklr9IlEpvR8tS6sY96NmeA4FM9DHST\noyf83rISe6WKiiBTSyK/fAwEDNQU2U5cXnihjO1ZqwKBgQDrWa19Sp7NrUS8tzkv\n+s1tjBbVSpUxokVvrkzMctSCcwf1YN5WMMuKDuX5UdEfRDar8AFdXm5LeK3nLYjr\n/utH4MfmiUrHd8lDcbBgGyu4+624X4bC1xwu6/+HDEJ5uHweSPBaOm0GYd6ZTtaf\nUYJ2/GoRDJBidDDO+ZzFUXTJYwKBgQDfiPzgoL3eOhICbvApAm0SL6Itz5rknEex\n/KpUgphD8ckkxnkgWjL9s5no+GYlYXBGQeIEON8qg8f31AxUjt4ooIx5tFrm2Gbl\nVmaz+rXUkEsCZtaL4WU2MnCTqn3Cw1c/Dmu8L/p1Zm+JivSjF3YUGXnd0w2aZsq3\n9QL1M6S68wKBgQDGn8KpcSahEtBmLIQZGCPzhj1m+TD82KSdYo7yJR9wkMBwuLYs\nK7Y75+LzDbfeGWXCqiWctSuEim7KIkXiVhwfZ3eN+uSff1rejr55/bRixBWS+xvy\nqDTi7M2VHiWkMKyfqpMesxx8PHDvFfhQMSxYWyLxDJd2X/UpWMSUSvCzXQKBgHsm\ns3rl0/T8tTNV/0X4qjKcv5LRj5pnZzBt7UFF+bFlIdX66nyidPlE24R4ZX4uonZy\nkZyV4I1BsQeecXSciVSErx/V90a67mVnJon9k/OZ01ltYsIJ2YL0YwVXppWInSaG\nQWCaZjgLyWNThNfdcxY7uuI1BoeMHh8fAxQn8Zd1AoGABgoJJcbnCc63cYGOVmTk\n4xvYbyh/X5gg0tJkrVDaD0W9sNUyLpMeNTKUo5br0CdmQ2KZ6PcG+womqeqrYMG+\nDMpkKwxPTWq8ErGkoH9k+rUOBX6qniBFUMsIViDNrOHaOSkzRR9n9vMrzoGuZb89\nhcvGR9gu1AGnnpTgPOd49Wg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-h82v3@nokiasmart-29ef5.iam.gserviceaccount.com",
+  "client_id": "108054042490473438143",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-h82v3%40nokiasmart-29ef5.iam.gserviceaccount.com"
+}

@@ -55,6 +55,13 @@ public class FirebaseDB {
         });
     }
 
+    public void sendRecoveryEmail(String email,callback result){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+            result.onComplete(task.isSuccessful());
+        });
+    }
+
     //register and save data to fb
     public void registerNewUser(String email, String password, UserSchema schema, callback result) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
