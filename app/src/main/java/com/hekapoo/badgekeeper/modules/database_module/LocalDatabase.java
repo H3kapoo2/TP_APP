@@ -2,6 +2,7 @@ package com.hekapoo.badgekeeper.modules.database_module;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 import com.hekapoo.badgekeeper.modules.validation_module.ValidatorCore;
@@ -28,7 +29,6 @@ public class LocalDatabase {
 
     //save locally using preferences
     public void saveUserLocally(UserSchema user, Context ctx){
-
         SharedPreferences localDB = ctx.getSharedPreferences("USER_LOCAL", 0); // 0 - for private mode
         SharedPreferences.Editor editor = localDB.edit();
 
@@ -37,7 +37,7 @@ public class LocalDatabase {
         editor.putString("user_department",user.getDepartment());
         editor.putString("user_cardID",user.getCardID());
         editor.putString("user_cardNumber",user.getCardNumber());
-
+        editor.putString("user_workHours",user.getWorkHours());
         editor.commit();
     }
 
@@ -51,13 +51,18 @@ public class LocalDatabase {
         String department = localDB.getString("user_department","");
         String cardID = localDB.getString("user_cardID","");
         String cardNumber = localDB.getString("user_cardNumber","");
+        String workHours = localDB.getString("user_workHours","");
 
-        UserSchema user = new UserSchema(email,localization,department,cardID,cardNumber);
+        UserSchema user = new UserSchema(email,department,localization,cardID,cardNumber,workHours);
 
         if(ValidatorCore.getInstance().userLocallyLoad(user))
             return user;
         else return null;
     }
+
+    //save user settings locally
+    //retrieve user settings
+
 
     //TODO: move those to to Firebase for retrieval
     public String[] getLocalizationArray() {
@@ -93,6 +98,22 @@ public class LocalDatabase {
                 "OAM",
                 "CLID",
                 "EODEC",
+        };
+
+        return values;
+    }
+
+    public String[] getWorkHoursArray() {
+        String[] values = new String[]{
+                "4h 0m",
+                "4h 30m",
+                "5h 0m",
+                "5h 30m",
+                "6h 0m",
+                "6h 30m",
+                "7h 0m",
+                "7h 30m",
+                "8h 0m",
         };
 
         return values;

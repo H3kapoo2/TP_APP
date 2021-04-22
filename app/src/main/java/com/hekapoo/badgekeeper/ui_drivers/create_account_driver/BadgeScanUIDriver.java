@@ -43,7 +43,7 @@ public class BadgeScanUIDriver extends AppCompatActivity {
             String cardID = intent.getStringExtra("cardID");
             String cardNumber = intent.getStringExtra("cardNumber");
 
-            UserSchema newUser = new UserSchema(email,localization,department,cardID,cardNumber);
+            UserSchema newUser = new UserSchema(email,department,localization,cardID,cardNumber,"8h 0m"); //default values go here before registering
 
             FirebaseDB.getInstance().registerNewUser(email, password, newUser, isSuccessful -> {
                 //on successful register,redirect to dashboard

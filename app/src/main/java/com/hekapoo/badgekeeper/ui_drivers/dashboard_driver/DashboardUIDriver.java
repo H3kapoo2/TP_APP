@@ -38,7 +38,7 @@ public class DashboardUIDriver extends AppCompatActivity {
         settingsIm = findViewById(R.id.settings_im);
 
         UserSchema user = LocalDatabase.getInstance().loadUserLocally(this);
-        Log.d("user", "onCreate : " + (user == null) + " " + user.email);
+        Log.d("user", "dashboard non existent: " + (user == null));
 
         //todo: validate email to be of the form xxx.xxxx@nokia.com ONLY
         //this should pass for now ^
@@ -48,6 +48,13 @@ public class DashboardUIDriver extends AppCompatActivity {
         firstNameTV.setText(firstName);
         lastNameTV.setText(lastName);
         localizationTV.setText(user.getLocalization());
+        workGoalTV.setText(user.getWorkHours());
+
+        //todo:
+        //for WORK_DONE start at zero when the badge is first scanned that day
+        //stop incrementing after WORK_DONE reached goal
+        //notify user their work is done for today
+        //clicking on the CIRCLE should pause/unpause the counter (maybe they have a break that shouldn't be counted as work)
 
         activityIm.setOnClickListener(e->{
             Intent intent = new Intent(this,ActivityUIDriver.class);
