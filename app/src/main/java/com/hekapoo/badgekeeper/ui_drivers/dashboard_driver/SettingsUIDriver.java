@@ -82,6 +82,11 @@ public class SettingsUIDriver extends AppCompatActivity {
 
         });
 
+        //enable notifications listener
+        notifSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            //todo:
+        });
+
         //back
         backBTN.setOnClickListener(e->{
             Intent intent = new Intent(this,DashboardUIDriver.class);
