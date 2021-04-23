@@ -38,19 +38,19 @@ public class SettingsUIDriver extends AppCompatActivity {
         keepLogInSW = findViewById(R.id.settings_keeplogin);
         notifSW = findViewById(R.id.settings_notifs);
 
-        //todo: load user saved settings for this app
+        //load spp settings
         SettingsSchema settings1 = LocalDatabase.getInstance().getLocalSettings(this);
 
+        //set statuses
         fingerprintLoginSW.setChecked(settings1.isFingerprintLogin());
         keepLogInSW.setChecked(settings1.isKeepLogin());
         notifSW.setChecked(settings1.isNotifications());
 
+        //keep me logged in listener
         keepLogInSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SettingsSchema settings = LocalDatabase.getInstance().getLocalSettings(this);
 
             if (isChecked)
-                //check if there are fingerprints registered on device,if not,u cant enable this
-                //else enable and save settings locally
                 settings.setKeepLogin(true);
             else
                 settings.setKeepLogin(false);
@@ -59,6 +59,20 @@ public class SettingsUIDriver extends AppCompatActivity {
 
         });
 
+        //enable fingerprint listener
+        fingerprintLoginSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SettingsSchema settings = LocalDatabase.getInstance().getLocalSettings(this);
+
+            if (isChecked)
+                settings.setFingerprintLogin(true);
+            else
+                settings.setFingerprintLogin(false);
+            LocalDatabase.getInstance().saveLocalSettings(settings,this);
+
+        });
+
+
+        //back
         backBTN.setOnClickListener(e->{
             Intent intent = new Intent(this,DashboardUIDriver.class);
             startActivity(intent);
