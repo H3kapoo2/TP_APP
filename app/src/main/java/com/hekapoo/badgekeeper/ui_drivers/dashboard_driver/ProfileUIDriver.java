@@ -72,6 +72,7 @@ public class ProfileUIDriver extends AppCompatActivity {
             Intent intent = new Intent(this, LoginUIDriver.class);
             startActivity(intent);
         });
+
         //localization on click dialog picker
         localizationTV.setOnClickListener(e -> {
             DialogUtils.getInstance().buildAndShowPickerDialog("Localization",

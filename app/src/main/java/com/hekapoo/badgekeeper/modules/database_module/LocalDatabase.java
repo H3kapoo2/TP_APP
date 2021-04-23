@@ -172,7 +172,14 @@ public class LocalDatabase {
                 "7h 30m",
                 "8h 0m",
         };
+        return values;
+    }
 
+    public String[] getLanguageArray() {
+        String[] values = new String[]{
+                "Romana",
+                "English",
+        };
         return values;
     }
 }

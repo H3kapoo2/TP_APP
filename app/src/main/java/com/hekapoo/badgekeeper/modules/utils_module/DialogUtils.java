@@ -27,7 +27,6 @@ public class DialogUtils {
 
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(ctx);
         builderSingle.setTitle(title);
-
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ctx, android.R.layout.select_dialog_singlechoice);
         arrayAdapter.addAll(data);
 
@@ -36,4 +35,5 @@ public class DialogUtils {
         builderSingle.setAdapter(arrayAdapter, (dialog, which) -> affectedView.setText( arrayAdapter.getItem(which)));
         builderSingle.show();
     }
+
 }
