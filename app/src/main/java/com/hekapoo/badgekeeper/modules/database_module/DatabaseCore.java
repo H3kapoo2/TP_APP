@@ -17,9 +17,5 @@ public class DatabaseCore {
         return instance;
     }
 
-    //Move this in local database
-    public boolean isKeepLoggedActive(){
-        return LocalDatabase.getInstance().getLocalSettings(DatabaseEnums.KEEP_ME_LOGGED_IN);
-    }
 
 }
