@@ -15,6 +15,7 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.hekapoo.badgekeeper.R;
 import com.hekapoo.badgekeeper.modules.database_module.LocalDatabase;
+import com.hekapoo.badgekeeper.modules.utils_module.DialogUtils;
 import com.hekapoo.badgekeeper.modules.utils_module.SettingsSchema;
 
 import java.io.FileInputStream;
@@ -24,7 +25,7 @@ import java.io.IOException;
 public class SettingsUIDriver extends AppCompatActivity {
 
     ImageView backBTN;
-    TextView languageTV;
+    TextView languageTV,languageTV2;
     Switch fingerprintLoginSW, keepLogInSW, notifSW;
 
     @Override
@@ -35,11 +36,21 @@ public class SettingsUIDriver extends AppCompatActivity {
         backBTN = findViewById(R.id.settings_back);
         fingerprintLoginSW = findViewById(R.id.settings_fingerprint);
         languageTV = findViewById(R.id.settings_language);
+        languageTV2 = findViewById(R.id.settings_language_2);
         keepLogInSW = findViewById(R.id.settings_keeplogin);
         notifSW = findViewById(R.id.settings_notifs);
 
         //load spp settings
         SettingsSchema settings1 = LocalDatabase.getInstance().getLocalSettings(this);
+
+        //todo: language
+        //language change listener
+        languageTV.setOnClickListener(e->{
+            DialogUtils.getInstance().buildAndShowPickerDialog("Language",
+                    LocalDatabase.getInstance().getLanguageArray(),
+                    SettingsUIDriver.this,
+                    languageTV2);
+        });
 
         //set statuses
         fingerprintLoginSW.setChecked(settings1.isFingerprintLogin());
@@ -70,7 +81,6 @@ public class SettingsUIDriver extends AppCompatActivity {
             LocalDatabase.getInstance().saveLocalSettings(settings,this);
 
         });
-
 
         //back
         backBTN.setOnClickListener(e->{
