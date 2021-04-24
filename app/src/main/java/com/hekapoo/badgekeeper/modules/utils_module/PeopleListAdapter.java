@@ -23,12 +23,15 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
-        public TextView username;
+        public TextView username,lastUsed,clockedAt,leftToWork;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             this.view = view;
             this.username = view.findViewById(R.id.item_username);
+            this.lastUsed = view.findViewById(R.id.item_last_use);
+            this.clockedAt = view.findViewById(R.id.item_clocked_at);
+            this.leftToWork = view.findViewById(R.id.item_leaves);
         }
     }
 
@@ -44,6 +47,9 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Vi
         //populate with data here i suppose
         PeopleListModel people = peopleFound.get(position);
         holder.username.setText(people.getUsername());
+        holder.lastUsed.setText(people.getLastUsedTime());
+        holder.clockedAt.setText(people.getCheckedInAt());
+        holder.leftToWork.setText(people.getLeftToWork());
     }
 
 

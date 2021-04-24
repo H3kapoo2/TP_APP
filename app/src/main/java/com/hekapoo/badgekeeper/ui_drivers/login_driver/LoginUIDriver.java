@@ -34,6 +34,8 @@ import com.hekapoo.badgekeeper.ui_drivers.create_account_driver.CreateAccount1UI
 import com.hekapoo.badgekeeper.ui_drivers.dashboard_driver.DashboardUIDriver;
 import com.hekapoo.badgekeeper.ui_drivers.recovery_driver.RecoveryUIDriver;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.Executor;
 
 /*
@@ -132,7 +134,6 @@ public class LoginUIDriver extends AppCompatActivity {
             }
         });
 
-
         loginBTN.setOnClickListener(e -> {
 
             String email = emailET.getText().toString().trim();
@@ -140,6 +141,23 @@ public class LoginUIDriver extends AppCompatActivity {
 
             //validate data with db
             if (ValidatorCore.getInstance().login(password, email, errorView))
+
+                //decrypt password
+                try {
+                    MessageDigest md = MessageDigest.getInstance("SHA-1");
+                    byte[] bytes = md.digest(password.getBytes());
+                    StringBuilder sb = new StringBuilder();
+                    for(int i=0; i< bytes.length ;i++)
+                    {
+                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                    }
+                    password = sb.toString();
+                }
+                catch (NoSuchAlgorithmException ex)
+                {
+                    ex.printStackTrace();
+                }
+
                 //try to log the user in
                 FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
                     if (loggedIn) {

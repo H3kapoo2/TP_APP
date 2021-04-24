@@ -17,11 +17,11 @@
         <activity android:name=".ui_drivers.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui_drivers.dashboard_driver.DashboardUIDriver"
@@ -42,12 +42,13 @@
         </activity>
         <activity android:name=".ui_drivers.dashboard_driver.PeopleUIDriver"
             android:configChanges="orientation"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".ui_drivers.login_driver.LoginUIDriver"
             android:configChanges="orientation"
