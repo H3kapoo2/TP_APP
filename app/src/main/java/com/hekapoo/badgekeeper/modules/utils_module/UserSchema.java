@@ -4,6 +4,8 @@ public class UserSchema {
 
     public String email,department,localization,cardID,cardNumber,workHours,password;
 
+    public String checkInAt,lastUsedBadge,leftToWork;
+
     public UserSchema(String password,String email, String department, String localization, String cardID, String cardNumber,String workHours) {
         this.email = email;
         this.department = department;
@@ -15,6 +17,30 @@ public class UserSchema {
     }
 
     public UserSchema(){}
+
+    public String getCheckInAt() {
+        return checkInAt;
+    }
+
+    public void setCheckInAt(String checkInAt) {
+        this.checkInAt = checkInAt;
+    }
+
+    public String getLastUsedBadge() {
+        return lastUsedBadge;
+    }
+
+    public void setLastUsedBadge(String lastUsedBadge) {
+        this.lastUsedBadge = lastUsedBadge;
+    }
+
+    public String getLeftToWork() {
+        return leftToWork;
+    }
+
+    public void setLeftToWork(String leftToWork) {
+        this.leftToWork = leftToWork;
+    }
 
     public String getPassword() {
         return password;

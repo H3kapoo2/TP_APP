@@ -23,6 +23,14 @@ public class DashboardUIDriver extends AppCompatActivity {
     TextView workGoalTV,workDoneTV;
     CardView activityIm,peopleIm,profileIm,settingsIm;
 
+    //TODO: THIS IS THE ONLY ACTIVITY THE USER CAN USE THE BADGE ACTIVELY
+    //TODO: ON BADGE USE, UPDATE DB FOR "LAST USED TIME"
+    //TODO: "CHECK IN TIME" IF THIS IS THE FIRST TIME HE USES THIS DAY
+    //TODO: IF HE JUST CHECKED IN FOR THE FIRST TIME THIS DAY, UPDATE "TIME LEFT TO WORK"
+
+    //TODO: CLICKING ON THE BADGE LETS YOU RESCAN IT
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

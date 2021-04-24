@@ -16,6 +16,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
+import java.util.Random;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+
 public class BadgeScanUIDriver extends AppCompatActivity {
 
     TextView approachTV;
@@ -43,8 +53,26 @@ public class BadgeScanUIDriver extends AppCompatActivity {
             String cardID = intent.getStringExtra("cardID");
             String cardNumber = intent.getStringExtra("cardNumber");
 
-            //TODO: ENCRYPT PASSWORD
+            //encrypt password
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA-1");
+                byte[] bytes = md.digest(password.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i< bytes.length ;i++)
+                {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                password = sb.toString();
+            }
+            catch (NoSuchAlgorithmException ex)
+            {
+                ex.printStackTrace();
+            }
+
             UserSchema newUser = new UserSchema(password,email,department,localization,cardID,cardNumber,"8h 0m"); //default values go here before registering
+            newUser.setLastUsedBadge("No-info");
+            newUser.setCheckInAt("No-Info");
+            newUser.setLeftToWork("No-Info");
 
             FirebaseDB.getInstance().registerNewUser(email, password, newUser, isSuccessful -> {
                 //on successful register,redirect to dashboard

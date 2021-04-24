@@ -94,6 +94,11 @@ public class LocalDatabase {
         editor.putString("user_cardID", user.getCardID());
         editor.putString("user_cardNumber", user.getCardNumber());
         editor.putString("user_workHours", user.getWorkHours());
+
+        editor.putString("user_clockedAt", user.getCheckInAt());
+        editor.putString("user_leavesAt", user.getLeftToWork());
+        editor.putString("user_last_use_badge", user.getLastUsedBadge());
+
         editor.commit();
     }
 
@@ -110,7 +115,15 @@ public class LocalDatabase {
         String cardNumber = localDB.getString("user_cardNumber", "");
         String workHours = localDB.getString("user_workHours", "");
 
+        String clockedAt = localDB.getString("user_clockedAt", "No-Info");
+        String lastUseBadge = localDB.getString("user_last_use_badge", "No-Info");
+        String leftToWork = localDB.getString("user_leavesAt", "No-Info");
+
         UserSchema user = new UserSchema(password, email, department, localization, cardID, cardNumber, workHours);
+
+        user.setLeftToWork(leftToWork);
+        user.setLastUsedBadge(lastUseBadge);
+        user.setCheckInAt(clockedAt);
 
         if (ValidatorCore.getInstance().userLocallyLoad(user))
             return user;
