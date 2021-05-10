@@ -29,9 +29,6 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Vi
             super(view);
             this.view = view;
             this.username = view.findViewById(R.id.item_username);
-            this.lastUsed = view.findViewById(R.id.item_last_use);
-            this.clockedAt = view.findViewById(R.id.item_clocked_at);
-            this.leftToWork = view.findViewById(R.id.item_leaves);
         }
     }
 

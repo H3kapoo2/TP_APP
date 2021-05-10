@@ -25,8 +25,7 @@ import java.io.IOException;
 public class SettingsUIDriver extends AppCompatActivity {
 
     ImageView backBTN;
-    TextView languageTV,languageTV2;
-    Switch fingerprintLoginSW, keepLogInSW, notifSW;
+    Switch fingerprintLoginSW, keepLogInSW;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,27 +34,14 @@ public class SettingsUIDriver extends AppCompatActivity {
 
         backBTN = findViewById(R.id.settings_back);
         fingerprintLoginSW = findViewById(R.id.settings_fingerprint);
-        languageTV = findViewById(R.id.settings_language);
-        languageTV2 = findViewById(R.id.settings_language_2);
         keepLogInSW = findViewById(R.id.settings_keeplogin);
-        notifSW = findViewById(R.id.settings_notifs);
 
         //load spp settings
         SettingsSchema settings1 = LocalDatabase.getInstance().getLocalSettings(this);
 
-        //todo: language
-        //language change listener
-        languageTV.setOnClickListener(e->{
-            DialogUtils.getInstance().buildAndShowPickerDialog("Language",
-                    LocalDatabase.getInstance().getLanguageArray(),
-                    SettingsUIDriver.this,
-                    languageTV2);
-        });
-
         //set statuses
         fingerprintLoginSW.setChecked(settings1.isFingerprintLogin());
         keepLogInSW.setChecked(settings1.isKeepLogin());
-        notifSW.setChecked(settings1.isNotifications());
 
         //keep me logged in listener
         keepLogInSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -80,11 +66,6 @@ public class SettingsUIDriver extends AppCompatActivity {
                 settings.setFingerprintLogin(false);
             LocalDatabase.getInstance().saveLocalSettings(settings,this);
 
-        });
-
-        //enable notifications listener
-        notifSW.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            //todo:
         });
 
         //back

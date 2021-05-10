@@ -17,11 +17,17 @@ import com.hekapoo.badgekeeper.modules.utils_module.UserSchema;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+
 public class DashboardUIDriver extends AppCompatActivity {
 
-    TextView firstNameTV,lastNameTV,localizationTV;
-    TextView workGoalTV,workDoneTV;
-    CardView activityIm,peopleIm,profileIm,settingsIm;
+    TextView firstNameTV, lastNameTV, localizationTV;
+    CardView peopleIm, profileIm, settingsIm;
 
     //TODO: THIS IS THE ONLY ACTIVITY THE USER CAN USE THE BADGE ACTIVELY
     //TODO: ON BADGE USE, UPDATE DB FOR "LAST USED TIME"
@@ -40,10 +46,6 @@ public class DashboardUIDriver extends AppCompatActivity {
         lastNameTV = findViewById(R.id.badge_name2);
         localizationTV = findViewById(R.id.badge_localization);
 
-        workGoalTV = findViewById(R.id.bagde_goal);
-        workDoneTV = findViewById(R.id.badge_current_time);
-
-        activityIm = findViewById(R.id.activity_im);
         peopleIm = findViewById(R.id.people_im);
         profileIm = findViewById(R.id.profile_im);
         settingsIm = findViewById(R.id.settings_im);
@@ -56,33 +58,19 @@ public class DashboardUIDriver extends AppCompatActivity {
         firstNameTV.setText(firstNameLastName[0]);
         lastNameTV.setText(firstNameLastName[1]);
         localizationTV.setText(user.getLocalization());
-        workGoalTV.setText(user.getWorkHours());
 
-        //todo: stop user from going back button,if he does,close application instead
-
-        //todo:
-        //for WORK_DONE start at zero when the badge is first scanned that day
-        //stop incrementing after WORK_DONE reached goal
-        //notify user their work is done for today
-        //clicking on the CIRCLE should pause/unpause the counter (maybe they have a break that shouldn't be counted as work)
-
-        activityIm.setOnClickListener(e->{
-            Intent intent = new Intent(this,ActivityUIDriver.class);
+        peopleIm.setOnClickListener(e -> {
+            Intent intent = new Intent(this, PeopleUIDriver.class);
             startActivity(intent);
         });
 
-        peopleIm.setOnClickListener(e->{
-            Intent intent = new Intent(this,PeopleUIDriver.class);
+        profileIm.setOnClickListener(e -> {
+            Intent intent = new Intent(this, ProfileUIDriver.class);
             startActivity(intent);
         });
 
-        profileIm.setOnClickListener(e->{
-            Intent intent = new Intent(this,ProfileUIDriver.class);
-            startActivity(intent);
-        });
-
-        settingsIm.setOnClickListener(e->{
-            Intent intent = new Intent(this,SettingsUIDriver.class);
+        settingsIm.setOnClickListener(e -> {
+            Intent intent = new Intent(this, SettingsUIDriver.class);
             startActivity(intent);
         });
 

@@ -94,11 +94,6 @@ public class LocalDatabase {
         editor.putString("user_cardID", user.getCardID());
         editor.putString("user_cardNumber", user.getCardNumber());
         editor.putString("user_workHours", user.getWorkHours());
-
-        editor.putString("user_clockedAt", user.getCheckInAt());
-        editor.putString("user_leavesAt", user.getLeftToWork());
-        editor.putString("user_last_use_badge", user.getLastUsedBadge());
-
         editor.commit();
     }
 
@@ -115,15 +110,7 @@ public class LocalDatabase {
         String cardNumber = localDB.getString("user_cardNumber", "");
         String workHours = localDB.getString("user_workHours", "");
 
-        String clockedAt = localDB.getString("user_clockedAt", "No-Info");
-        String lastUseBadge = localDB.getString("user_last_use_badge", "No-Info");
-        String leftToWork = localDB.getString("user_leavesAt", "No-Info");
-
         UserSchema user = new UserSchema(password, email, department, localization, cardID, cardNumber, workHours);
-
-        user.setLeftToWork(leftToWork);
-        user.setLastUsedBadge(lastUseBadge);
-        user.setCheckInAt(clockedAt);
 
         if (ValidatorCore.getInstance().userLocallyLoad(user))
             return user;
@@ -141,16 +128,7 @@ public class LocalDatabase {
                 "Bucuresti, Romania",
                 "Brasov, Romania",
                 "Baia Mare, Romania",
-                "Timisoara, Romania",
-                "Timisoara, Romania",
-                "Timisoara, Romania",
-                "Timisoara, Romania",
-                "Timisoara, Romania",
-                "Timisoara, Romania",
-                "Bucuresti, Romania",
-                "Brasov, Romania",
-                "Baia Mare, Romania",
-                "Timisoara, Romania",
+                "Oradea, Romania",
         };
 
         return values;
@@ -160,14 +138,8 @@ public class LocalDatabase {
         String[] values = new String[]{
                 "SWM",
                 "OAM",
-                "SWM",
                 "DEPT2",
-                "SWM",
                 "RAMP",
-                "SWM",
-                "OAM",
-                "CLID",
-                "EODEC",
         };
 
         return values;
@@ -176,13 +148,7 @@ public class LocalDatabase {
     public String[] getWorkHoursArray() {
         String[] values = new String[]{
                 "4h 0m",
-                "4h 30m",
-                "5h 0m",
-                "5h 30m",
                 "6h 0m",
-                "6h 30m",
-                "7h 0m",
-                "7h 30m",
                 "8h 0m",
         };
         return values;

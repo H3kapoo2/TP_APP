@@ -36,6 +36,10 @@ import com.hekapoo.badgekeeper.ui_drivers.recovery_driver.RecoveryUIDriver;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Executor;
 
 /*
@@ -62,7 +66,6 @@ public class LoginUIDriver extends AppCompatActivity {
         fingerprintBTN = findViewById(R.id.fingerprint_login);
         errorView = findViewById(R.id.app_error_tv);
 
-        //fingerprint login
         //logs in using the last account that was in use on this phone
         fingerprintBTN.setOnClickListener(e -> {
 
@@ -141,42 +144,39 @@ public class LoginUIDriver extends AppCompatActivity {
 
             //validate data with db
             if (ValidatorCore.getInstance().login(password, email, errorView))
-
-                //decrypt password
-                try {
-                    MessageDigest md = MessageDigest.getInstance("SHA-1");
-                    byte[] bytes = md.digest(password.getBytes());
-                    StringBuilder sb = new StringBuilder();
-                    for(int i=0; i< bytes.length ;i++)
-                    {
-                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    }
-                    password = sb.toString();
+                Log.d("TAG", "onCreate: ");
+            //decrypt password
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA-1");
+                byte[] bytes = md.digest(password.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < bytes.length; i++) {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
                 }
-                catch (NoSuchAlgorithmException ex)
-                {
-                    ex.printStackTrace();
+                password = sb.toString();
+            } catch (NoSuchAlgorithmException ex) {
+                ex.printStackTrace();
+            }
+
+            //try to log the user in
+            FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
+                if (loggedIn) {
+
+                    Intent intent = new Intent(this, DashboardUIDriver.class);
+
+                    //get user data from fb db to pass to dashboard
+                    FirebaseDB.getInstance().getUserFirebase(resultUser -> {
+                        if (resultUser != null) {
+                            LocalDatabase.getInstance().saveUserLocally(resultUser, this);
+                            startActivity(intent);
+                        } else
+                            errorView.setText("Database error,please try later!");
+                    });
+                } else {
+                    errorView.setVisibility(View.VISIBLE);
+                    errorView.setText("Invalid credentials!");
                 }
-
-                //try to log the user in
-                FirebaseDB.getInstance().loginUser(email, password, loggedIn -> {
-                    if (loggedIn) {
-
-                        Intent intent = new Intent(this, DashboardUIDriver.class);
-
-                        //get user data from fb db to pass to dashboard
-                        FirebaseDB.getInstance().getUserFirebase(resultUser -> {
-                            if (resultUser != null) {
-                                LocalDatabase.getInstance().saveUserLocally(resultUser, this);
-                                startActivity(intent);
-                            } else
-                                errorView.setText("Database error,please try later!");
-                        });
-                    } else {
-                        errorView.setVisibility(View.VISIBLE);
-                        errorView.setText("Invalid credentials!");
-                    }
-                });
+            });
         });
 
         createAccountBTN.setOnClickListener(e -> {
