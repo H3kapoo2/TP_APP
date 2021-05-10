@@ -86,90 +86,9 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/settings_opt2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/settings_opt1">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-
-                <TextView
-                    android:id="@+id/settings_language"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/rajdhani_regular"
-                    android:text="Change Language"
-                    android:textColor="#fff"
-                    android:textSize="22sp" />
-
-                <LinearLayout
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:paddingHorizontal="10dp"
-                        android:id="@+id/settings_language_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/rajdhani_regular"
-                        android:text="English"
-                        android:textColor="@color/text_gray"
-                        android:textSize="20sp" />
-                </LinearLayout>
-            </LinearLayout>
 
 
-        </LinearLayout>
 
-
-        <LinearLayout
-            android:id="@+id/settings_opt3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/settings_opt2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/rajdhani_regular"
-                    android:text="Allow notifications"
-                    android:textColor="#fff"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="right">
-
-                <Switch
-                    android:id="@+id/settings_notifs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
-            </LinearLayout>
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/settings_opt4"
@@ -177,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/settings_opt3">
+            app:layout_constraintTop_toBottomOf="@+id/settings_opt1">
 
             <LinearLayout
                 android:layout_width="match_parent"
