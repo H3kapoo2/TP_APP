@@ -44,9 +44,6 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Vi
         //populate with data here i suppose
         PeopleListModel people = peopleFound.get(position);
         holder.username.setText(people.getUsername());
-        holder.lastUsed.setText(people.getLastUsedTime());
-        holder.clockedAt.setText(people.getCheckedInAt());
-        holder.leftToWork.setText(people.getLeftToWork());
     }
 
 
